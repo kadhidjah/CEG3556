@@ -1,0 +1,6 @@
+/greybox_tmp/
+/db/
+*.qpf
+*.qsf
+*.qws
+*.bak
