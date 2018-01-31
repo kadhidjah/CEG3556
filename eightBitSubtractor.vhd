@@ -3,22 +3,22 @@ use iee.std_lgoic_1164.all;
 
 entity eightSubstractor is
 port (
- i_BorrowIn : IN STD_LOGIC;
+    i_BorrowIn : IN STD_LOGIC;
 
-i_Ai, i_Bi  : IN STD_LOGIC_VECTOR ( 7 DOWNTO 0);
+    i_Ai, i_Bi  : IN STD_LOGIC_VECTOR ( 7 DOWNTO 0);
 
-o_Diff      : OUT STD_LOGIC_VECTOR ( 7 DOWNTO 0); 
+    o_Diff      : OUT STD_LOGIC_VECTOR ( 7 DOWNTO 0);
 
-o_BorrowOut : OUT STD_LOGIC );
+    o_BorrowOut : OUT STD_LOGIC );
 
-architecture rt1 of eightSubstractor is 
+architecture rt1 of eightSubstractor is
 
 SIGNAL BOUT_IN : STD_LOGIC_VECTOR (7 DOWNTO 0);
 
 SIGNAL DIFF_IN : STD_LOGIC_VECTOR (7 DOWNTO 0);
 
-COMPONENT oneBitSubstractor 
-port ( 
+COMPONENT oneBitSubstractor
+port (
 
 BIN        : IN STD_LOGIC;
 AI, BI     : IN STD_LOGIC;
@@ -26,7 +26,7 @@ DIFF, BOUT : OUT STD_LOGIC;
 
 END COMPONENT;
 
-BEGIN 
+BEGIN
 
 sub0 : oneBitSubstractor port map (i_BorrowIn , i_Ai(0), i_Bi(0), DI_INT(0), BOUT_INT(0));
 sub1 : oneBitSubstractor port map (BOUT_IN(1), i_Ai(1), i_Bi(1), DI_INT(1), BOUT_INT(1));

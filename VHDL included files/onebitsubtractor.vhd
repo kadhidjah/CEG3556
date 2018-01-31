@@ -17,7 +17,7 @@ BEGIN
 
 o_Diff <= i_Ai xor i_Bi xor i_BorrowIn;
 
-o_BorrowOut <= ((not i_Ai) and i_Bi) or ((not i_Ai) and i_BorrowIn) or (i_Bi and i_Borrow);
+o_BorrowOut <= ((not i_Ai) and i_Bi) or ((not i_Ai) and i_BorrowIn) or (i_Bi and i_BorrowIn);
 
 
 
