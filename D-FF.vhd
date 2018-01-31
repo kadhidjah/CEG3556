@@ -1,4 +1,4 @@
-library IEEE;
+0library IEEE;
 use IEEE.std_Logic_1164.all;
 
 entity D-FF is

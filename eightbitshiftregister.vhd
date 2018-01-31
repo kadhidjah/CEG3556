@@ -7,7 +7,7 @@ ENTITY eightBitShiftRegister IS
 		i_resetBar, i_load		: IN	STD_LOGIC; 
 		i_clock						: IN	STD_LOGIC;
 		i_Value						: IN	STD_LOGIC_VECTOR(7 downto 0);
-		o_Value						: OUT	STD_LOGIC(7 downto 0));
+		o_Value---------------------------------------------------------------						: OUT	STD_LOGIC(7 downto 0));
 END eightBitShiftRegister;
 
 ARCHITECTURE rtl OF eightBitShiftRegister IS
