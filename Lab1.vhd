@@ -19,19 +19,21 @@ end arithmetic;
 
 architecture arithmetic_stru of arithmetic is
 
-SIGNAL gnd : STD_LOGIC;
+TYPE states IS (STATE1, STATE2, STATE3, ETC);
+
+SIGNAL gnd, vcc : STD_LOGIC;
 SIGNAL largerExp : STD_LOGIC;
 SIGNAL adderCarryOut : STD_LOGIC;
 SIGNAL expDif : STD_LOGIC_VECTOR(6 downto 0);
 SIGNAL counter : STD_LOGIC_VECTOR(6 downto 0);
 SIGNAL smallerMantissa, shiftedMantissa, nonShiftedMantissa, shifterOutput, adderSum : STD_LOGIC_VECTOR(7 downto 0);
 
-COMPONENT eightBitSubstractor 
-port ( 
+COMPONENT eightBitSubstractor
+port (
 
 i_BorrowIn : IN STD_LOGIC;
 i_Ai, i_Bi  : IN STD_LOGIC_VECTOR ( 7 DOWNTO 0);
-o_Diff      : OUT STD_LOGIC_VECTOR ( 7 DOWNTO 0); 
+o_Diff      : OUT STD_LOGIC_VECTOR ( 7 DOWNTO 0);
 o_BorrowOut : OUT STD_LOGIC );
 
 END COMPONENT;
@@ -47,6 +49,14 @@ COMPONENT eightBitAdder
 		i_Ai, i_Bi		: IN	STD_LOGIC_VECTOR(7 downto 0);
 		o_CarryOut		: OUT	STD_LOGIC;
 		o_Sum			: OUT	STD_LOGIC_VECTOR(7 downto 0));
+END COMPONENT;
+
+COMPONENT eightBitShiftRegister
+	PORT(
+		i_resetBar, i_load		: IN	STD_LOGIC;
+		i_clock						: IN	STD_LOGIC;
+		i_Value						: IN	STD_LOGIC_VECTOR(7 downto 0);
+		o_Value 					: OUT	STD_LOGIC(7 downto 0));
 END COMPONENT;
 
 
@@ -71,7 +81,7 @@ if not(counter = "0000000") then
 	end loop;
 
 	shiftedMantissa <= shifterOutput;
-	
+
 end if;
 
 
@@ -83,10 +93,3 @@ shifter	 	 : eightbitshiftregister port map (GReset, vcc, GClock, smallerMantiss
 mux_mantissa1 : mux2x1 port map(MantissaA, MantissaB, largerExp, shiftedMantissa);
 mux_mantissa2 : mux2x1 port map(MantissaA, MantissaB, not(largerExp), nonShiftedMantissa);
 adder		    : eightBitAdder port map(shiftedMantissa, nonShiftedMantissa, adderCarryOut, adderSum);
-
-
-
-
-
-
-

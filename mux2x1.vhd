@@ -5,7 +5,7 @@ entity mux2x1 is
 port ( a,b 		: in std_logic_vector(7 downto 0);
 		 s			: in std_logic;
 		 m			: out std_logic_vector(7 downto 0));
-end mux4x1;
+end mux2x1;
 
 architecture circuit of mux2x1 is
 begin
